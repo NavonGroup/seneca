@@ -9,7 +9,7 @@ def create_app(test_config=None):
         # a default secret that should be overridden by instance config
         SECRET_KEY="dev",
         # store the database in the instance folder
-        DATABASE=os.path.join(app.instance_path, "seneca_front.sqlite"),
+        DATABASE=os.path.join(app.instance_path, "events-interface.sqlite"),
     )
 
     if test_config is None:
@@ -29,7 +29,7 @@ def create_app(test_config=None):
     @app.route("/test", methods=("GET", "POST"))
     def test():
         data = request.get_json()
-        print (data)
+        print(data)
         with open('data.txt', 'w') as file:
             file.write(json.dumps(data, indent=4))
         return render_template("test.html")
@@ -37,12 +37,11 @@ def create_app(test_config=None):
     @app.route("/form", methods=("GET", "POST"))
     def form():
         if request.method == 'POST':
-            data2 = request.get_json()
-            print (data2)
-            k =json.dumps(data2, indent=2)
-            print (k)
+            data = request.get_json()
+            data_formatted = json.dumps(data, indent=2)
+            print(data_formatted)
             with open('form.txt', 'w') as file:
-                json.dump(data2,file)
+                json.dump(data_formatted, file)
         return render_template("form.html")
 
     # make url_for('index') == url_for('blog.index')
