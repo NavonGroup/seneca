@@ -157,10 +157,10 @@ $(document).ready(function(){
 $(document).on('change', ".uploader", function(event) {
   //preventDefault stops the page from reloading
   event.preventDefault();
-  var reader = new FileReader();
-  reader.onload = function(event) {
-    var jsonObj = JSON.parse(event.target.result);
-    tabs = $(".tabs-bar").find(".tab");
+  var reader=new FileReader();
+  reader.onload=function(event) {
+    var jsonObj=JSON.parse(event.target.result);
+    tabs=$(".tabs-bar").find(".tab");
     numTabs = 0;
     //k is the event name (tab label)
     for (var k in jsonObj){
